@@ -12,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kira.formation.auth.demo.dto.CreationUtilisateurDTO;
+import kira.formation.auth.demo.dto.ModificationUsernamePasswordDTO;
 import kira.formation.auth.demo.dto.SimpleUtilisateurDTO;
 import kira.formation.auth.demo.dto.UtilisateurDTO;
 import kira.formation.auth.demo.models.Utilisateur;
@@ -66,5 +67,25 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 		}
 		return results;
 	}
+
+	@Override
+	public void supprimerUtilisateur(String id) {
+		if(this.repository.existsById(id))
+			this.repository.deleteById(id);
+		else
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+	}
+
+	@Override
+	public UtilisateurDTO modificationUsernamePassword(ModificationUsernamePasswordDTO dto) {
+		Utilisateur utilisateur = this.repository.findById(dto.getId())
+				.orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
+		utilisateur.setUsername(dto.getUsername());
+		utilisateur.setEmail(dto.getEmail());
+		Utilisateur result = this.repository.save(utilisateur);
+		return this.mapper.convertValue(result, UtilisateurDTO.class);
+	}
+	
+	
 
 }
