@@ -1,19 +1,18 @@
 package kira.formation.auth.demo.services.impl;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.bson.internal.Base64;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import kira.formation.auth.demo.dto.CreationUtilisateurDTO;
+import kira.formation.auth.demo.dto.SimpleUtilisateurDTO;
 import kira.formation.auth.demo.dto.UtilisateurDTO;
 import kira.formation.auth.demo.models.Utilisateur;
 import kira.formation.auth.demo.repositorories.UtilisateurRepository;
@@ -21,16 +20,13 @@ import kira.formation.auth.demo.services.UtilisateurService;
 
 public class UtilisateurServiceImpl implements UtilisateurService{
 
-	private ObjectMapper mapper = new ObjectMapper();
+	private ObjectMapper mapper;
 	
 	private UtilisateurRepository repository;
 	
-	public UtilisateurServiceImpl(UtilisateurRepository repository) {
+	public UtilisateurServiceImpl(UtilisateurRepository repository, ObjectMapper mapperParam) {
 		this.repository = repository;
-		mapper.registerModule(new JavaTimeModule());
-		mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-		mapper.setVisibility(VisibilityChecker.Std.defaultInstance().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
+		this.mapper = mapperParam;
 	}
 	
 	@Override
@@ -48,6 +44,27 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 		if (dto.getEmail()==null || dto.getUsername()==null || dto.getPassword()==null) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
+	}
+	
+	public SimpleUtilisateurDTO findById(String id) {
+		Utilisateur utilisateur = this.repository.findById(id)
+				.orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
+		return mapper.convertValue(utilisateur, SimpleUtilisateurDTO.class);
+	}
+
+	@Override
+	public List<SimpleUtilisateurDTO> trouverToutLesUtilisateurs() {
+		List<Utilisateur> utilisateurs = this.repository.findAll();
+		/*
+		return utilisateurs.stream().map(utilisateur->{
+			return this.mapper.convertValue(utilisateur, SimpleUtilisateurDTO.class);
+		}).collect(Collectors.toList());
+		*/
+		List<SimpleUtilisateurDTO> results = new ArrayList<>();
+		for (Utilisateur utilisateur : utilisateurs) {
+			results.add(this.mapper.convertValue(utilisateur, SimpleUtilisateurDTO.class));
+		}
+		return results;
 	}
 
 }
