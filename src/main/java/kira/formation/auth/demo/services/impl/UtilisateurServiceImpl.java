@@ -3,6 +3,7 @@ package kira.formation.auth.demo.services.impl;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.bson.internal.Base64;
@@ -11,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kira.formation.auth.demo.dto.ConnexionDTO;
 import kira.formation.auth.demo.dto.CreationUtilisateurDTO;
 import kira.formation.auth.demo.dto.ModificationUsernamePasswordDTO;
 import kira.formation.auth.demo.dto.SimpleUtilisateurDTO;
@@ -80,10 +82,22 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 	public UtilisateurDTO modificationUsernamePassword(ModificationUsernamePasswordDTO dto) {
 		Utilisateur utilisateur = this.repository.findById(dto.getId())
 				.orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
-		utilisateur.setUsername(dto.getUsername());
-		utilisateur.setEmail(dto.getEmail());
+		if(dto.getUsername()!=null)
+			utilisateur.setUsername(dto.getUsername());
+		if(dto.getEmail() != null)
+			utilisateur.setEmail(dto.getEmail());
 		Utilisateur result = this.repository.save(utilisateur);
 		return this.mapper.convertValue(result, UtilisateurDTO.class);
+	}
+
+	@Override
+	public String connexion(ConnexionDTO dto) {
+		// Trouver l'utilisateur en fonction de l'username ou email
+		Optional<Utilisateur> optional = this.repository.findFirstByUsernameOrEmail(dto.getUsernameOrEmail(), dto.getUsernameOrEmail());
+		Utilisateur utilisateur = optional.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+		if (utilisateur.getPassword().equals(Base64.encode(dto.getPassword().getBytes())))
+			return utilisateur.getId();
+		throw new ResponseStatusException(HttpStatus.FORBIDDEN);
 	}
 	
 	

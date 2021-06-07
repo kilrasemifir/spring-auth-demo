@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import kira.formation.auth.demo.dto.ConnexionDTO;
 import kira.formation.auth.demo.dto.CreationUtilisateurDTO;
 import kira.formation.auth.demo.dto.ModificationUsernamePasswordDTO;
 import kira.formation.auth.demo.dto.SimpleUtilisateurDTO;
@@ -50,5 +51,10 @@ public class UtilisateurController {
 	@PatchMapping("")
 	public UtilisateurDTO modificationUserNamePassword(ModificationUsernamePasswordDTO dto) {
 		return this.service.modificationUsernamePassword(dto);
+	}
+	
+	@PostMapping("connexion")
+	public String connexion(@RequestBody ConnexionDTO dto) {
+		return this.service.connexion(dto);
 	}
 }
