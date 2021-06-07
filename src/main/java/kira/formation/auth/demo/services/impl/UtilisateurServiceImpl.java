@@ -3,6 +3,8 @@ package kira.formation.auth.demo.services.impl;
 import java.time.LocalDateTime;
 
 import org.bson.internal.Base64;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -33,13 +35,19 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 	
 	@Override
 	public UtilisateurDTO creationNouveauUtilisateur(CreationUtilisateurDTO dto) {
+		checkCreationUtilisateur(dto);
 		Utilisateur entity = this.mapper.convertValue(dto, Utilisateur.class);
-		System.out.println(dto);
 		entity.setPassword(Base64.encode(dto.getPassword().getBytes()));
 		entity.setCreateAt(LocalDateTime.now());
 		entity.setUpdateAt(LocalDateTime.now());
 		Utilisateur result = this.repository.save(entity);
 		return this.mapper.convertValue(result, UtilisateurDTO.class);
+	}
+	
+	private void checkCreationUtilisateur(CreationUtilisateurDTO dto) {
+		if (dto.getEmail()==null || dto.getUsername()==null || dto.getPassword()==null) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		}
 	}
 
 }
