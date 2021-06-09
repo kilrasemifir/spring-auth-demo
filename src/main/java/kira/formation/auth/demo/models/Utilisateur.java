@@ -20,6 +20,8 @@ public class Utilisateur {
 	private String password; //chiffré
 	private LocalDateTime createAt;
 	private LocalDateTime updateAt;
+	private double solde;
+	
 	public String getId() {
 		return id;
 	}
@@ -55,6 +57,12 @@ public class Utilisateur {
 	}
 	public void setUpdateAt(LocalDateTime updateAt) {
 		this.updateAt = updateAt;
+	}
+	public double getSolde() {
+		return solde;
+	}
+	public void setSolde(double solde) {
+		this.solde = solde;
 	}
 	
 	

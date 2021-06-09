@@ -35,7 +35,7 @@ public class UtilisateurController {
 	
 	@GetMapping("{id}")
 	public SimpleUtilisateurDTO findById(@PathVariable String id) {
-		return this.service.findById(id);
+		return this.service.findSimpleUtilisateurById(id);
 	}
 	
 	@GetMapping("")

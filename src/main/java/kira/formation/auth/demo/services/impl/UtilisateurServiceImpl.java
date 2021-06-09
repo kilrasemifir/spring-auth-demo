@@ -49,10 +49,15 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 		}
 	}
 	
-	public SimpleUtilisateurDTO findById(String id) {
+	public SimpleUtilisateurDTO findSimpleUtilisateurById(String id) {
+		Utilisateur utilisateur = findById(id);
+		return mapper.convertValue(utilisateur, SimpleUtilisateurDTO.class);
+	}
+
+	public Utilisateur findById(String id) {
 		Utilisateur utilisateur = this.repository.findById(id)
 				.orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
-		return mapper.convertValue(utilisateur, SimpleUtilisateurDTO.class);
+		return utilisateur;
 	}
 
 	@Override
@@ -80,8 +85,7 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 
 	@Override
 	public UtilisateurDTO modificationUsernamePassword(ModificationUsernamePasswordDTO dto) {
-		Utilisateur utilisateur = this.repository.findById(dto.getId())
-				.orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
+		Utilisateur utilisateur = this.findById(dto.getId());
 		if(dto.getUsername()!=null)
 			utilisateur.setUsername(dto.getUsername());
 		if(dto.getEmail() != null)
@@ -93,13 +97,18 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 	@Override
 	public String connexion(ConnexionDTO dto) {
 		// Trouver l'utilisateur en fonction de l'username ou email
-		Optional<Utilisateur> optional = this.repository.findFirstByUsernameOrEmail(dto.getUsernameOrEmail(), dto.getUsernameOrEmail());
+		Optional<Utilisateur> optional = this.repository.findFirstByUsernameOrEmail(
+				dto.getUsernameOrEmail(), 
+				dto.getUsernameOrEmail());
 		Utilisateur utilisateur = optional.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
 		if (utilisateur.getPassword().equals(Base64.encode(dto.getPassword().getBytes())))
 			return utilisateur.getId();
 		throw new ResponseStatusException(HttpStatus.FORBIDDEN);
 	}
-	
-	
 
+	@Override
+	public Utilisateur save(Utilisateur utilisateur) {
+		return this.repository.save(utilisateur);
+	}
+	
 }
