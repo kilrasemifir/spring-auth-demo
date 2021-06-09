@@ -18,6 +18,9 @@ import kira.formation.auth.demo.dto.CreationUtilisateurDTO;
 import kira.formation.auth.demo.dto.ModificationUsernamePasswordDTO;
 import kira.formation.auth.demo.dto.SimpleUtilisateurDTO;
 import kira.formation.auth.demo.dto.UtilisateurDTO;
+import kira.formation.auth.demo.services.AuthentificationService;
+import kira.formation.auth.demo.services.ModificationUtilisateurService;
+import kira.formation.auth.demo.services.SimpleUtilisateurService;
 import kira.formation.auth.demo.services.UtilisateurService;
 
 @CrossOrigin
@@ -28,33 +31,42 @@ public class UtilisateurController {
 	@Autowired
 	private UtilisateurService service;
 	
+	@Autowired
+	private AuthentificationService authService;
+	
+	@Autowired
+	private SimpleUtilisateurService simpleUtilisateurService;
+	
+	@Autowired
+	private ModificationUtilisateurService modificationService;
+	
 	@PostMapping("")
 	public UtilisateurDTO creationNouveauUtilisateur(@RequestBody CreationUtilisateurDTO dto) {
-		return this.service.creationNouveauUtilisateur(dto);
+		return this.modificationService.creationNouveauUtilisateur(dto);
 	}
 	
 	@GetMapping("{id}")
 	public SimpleUtilisateurDTO findById(@PathVariable String id) {
-		return this.service.findSimpleUtilisateurById(id);
+		return this.simpleUtilisateurService.findSimpleUtilisateurById(id);
 	}
 	
 	@GetMapping("")
 	public List<SimpleUtilisateurDTO> findAll(){
-		return this.service.trouverToutLesUtilisateurs();
+		return this.simpleUtilisateurService.trouverToutLesUtilisateurs();
 	}
 	
 	@DeleteMapping("{id}")
 	public void supprimerParId(@PathVariable String id) {
-		this.service.supprimerUtilisateur(id);
+		this.service.deleteById(id);
 	}
 	
 	@PatchMapping("")
 	public UtilisateurDTO modificationUserNamePassword(ModificationUsernamePasswordDTO dto) {
-		return this.service.modificationUsernamePassword(dto);
+		return this.modificationService.modificationUsernamePassword(dto);
 	}
 	
 	@PostMapping("connexion")
 	public String connexion(@RequestBody ConnexionDTO dto) {
-		return this.service.connexion(dto);
+		return this.authService.connexion(dto);
 	}
 }

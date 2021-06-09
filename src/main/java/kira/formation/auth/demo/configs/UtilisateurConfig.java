@@ -11,15 +11,22 @@ import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import kira.formation.auth.demo.repositorories.UtilisateurRepository;
-import kira.formation.auth.demo.services.UtilisateurService;
+import kira.formation.auth.demo.services.AuthentificationService;
+import kira.formation.auth.demo.services.UtilisateurCRUDService;
+import kira.formation.auth.demo.services.impl.AuthentificationUtilisateurService;
 import kira.formation.auth.demo.services.impl.UtilisateurServiceImpl;
 
 @Configuration
 public class UtilisateurConfig {
 
 	@Bean
-	public UtilisateurService utilisateurService(UtilisateurRepository repository, ObjectMapper mapper) {
+	public UtilisateurCRUDService utilisateurService(UtilisateurRepository repository, ObjectMapper mapper) {
 		return new UtilisateurServiceImpl(repository, mapper);
+	}
+	
+	@Bean
+	public AuthentificationService authService(UtilisateurRepository repository) {
+		return new AuthentificationUtilisateurService(repository);
 	}
 	
 	@Bean

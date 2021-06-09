@@ -5,14 +5,14 @@ import org.springframework.web.server.ResponseStatusException;
 
 import kira.formation.auth.demo.models.Utilisateur;
 import kira.formation.auth.demo.repositorories.UtilisateurRepository;
+import kira.formation.auth.demo.services.UtilisateurCRUDService;
 import kira.formation.auth.demo.services.TransactionService;
-import kira.formation.auth.demo.services.UtilisateurService;
 
 public class TransactionServiceImpl implements TransactionService{
 
-	private UtilisateurService service;
+	private UtilisateurCRUDService service;
 	
-	public TransactionServiceImpl(UtilisateurService service) {
+	public TransactionServiceImpl(UtilisateurCRUDService service) {
 		super();
 		this.service = service;
 	}
