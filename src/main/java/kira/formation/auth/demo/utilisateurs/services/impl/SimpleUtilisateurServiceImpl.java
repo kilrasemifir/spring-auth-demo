@@ -1,15 +1,15 @@
-package kira.formation.auth.demo.services.impl;
+package kira.formation.auth.demo.utilisateurs.services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import kira.formation.auth.demo.dto.SimpleUtilisateurDTO;
-import kira.formation.auth.demo.models.Utilisateur;
-import kira.formation.auth.demo.repositorories.UtilisateurRepository;
-import kira.formation.auth.demo.services.SimpleUtilisateurService;
-import kira.formation.auth.demo.services.UtilisateurService;
+import kira.formation.auth.demo.utilisateurs.dto.SimpleUtilisateurDTO;
+import kira.formation.auth.demo.utilisateurs.entities.Utilisateur;
+import kira.formation.auth.demo.utilisateurs.repositories.UtilisateurRepository;
+import kira.formation.auth.demo.utilisateurs.services.SimpleUtilisateurService;
+import kira.formation.auth.demo.utilisateurs.services.UtilisateurService;
 
 public class SimpleUtilisateurServiceImpl implements SimpleUtilisateurService{
 

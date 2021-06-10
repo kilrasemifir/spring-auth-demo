@@ -1,4 +1,4 @@
-package kira.formation.auth.demo.services.impl;
+package kira.formation.auth.demo.utilisateurs.services.impl;
 
 import java.time.LocalDateTime;
 
@@ -8,13 +8,13 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import kira.formation.auth.demo.dto.CreationUtilisateurDTO;
-import kira.formation.auth.demo.dto.ModificationUsernamePasswordDTO;
-import kira.formation.auth.demo.dto.UtilisateurDTO;
-import kira.formation.auth.demo.models.Utilisateur;
-import kira.formation.auth.demo.repositorories.UtilisateurRepository;
-import kira.formation.auth.demo.services.ModificationUtilisateurService;
-import kira.formation.auth.demo.services.UtilisateurService;
+import kira.formation.auth.demo.utilisateurs.dto.CreationUtilisateurDTO;
+import kira.formation.auth.demo.utilisateurs.dto.ModificationUsernamePasswordDTO;
+import kira.formation.auth.demo.utilisateurs.dto.UtilisateurDTO;
+import kira.formation.auth.demo.utilisateurs.entities.Utilisateur;
+import kira.formation.auth.demo.utilisateurs.repositories.UtilisateurRepository;
+import kira.formation.auth.demo.utilisateurs.services.ModificationUtilisateurService;
+import kira.formation.auth.demo.utilisateurs.services.UtilisateurService;
 
 public class ModificationUtilisateurServiceImpl implements ModificationUtilisateurService{
 

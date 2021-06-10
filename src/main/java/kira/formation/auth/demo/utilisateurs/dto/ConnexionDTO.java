@@ -1,4 +1,4 @@
-package kira.formation.auth.demo.dto;
+package kira.formation.auth.demo.utilisateurs.dto;
 
 public class ConnexionDTO {
 	private String usernameOrEmail;

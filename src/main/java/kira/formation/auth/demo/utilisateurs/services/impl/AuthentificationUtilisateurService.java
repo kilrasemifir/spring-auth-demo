@@ -1,4 +1,4 @@
-package kira.formation.auth.demo.services.impl;
+package kira.formation.auth.demo.utilisateurs.services.impl;
 
 import java.util.Optional;
 
@@ -6,10 +6,10 @@ import org.bson.internal.Base64;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import kira.formation.auth.demo.dto.ConnexionDTO;
-import kira.formation.auth.demo.models.Utilisateur;
-import kira.formation.auth.demo.repositorories.UtilisateurRepository;
-import kira.formation.auth.demo.services.AuthentificationService;
+import kira.formation.auth.demo.utilisateurs.dto.ConnexionDTO;
+import kira.formation.auth.demo.utilisateurs.entities.Utilisateur;
+import kira.formation.auth.demo.utilisateurs.repositories.UtilisateurRepository;
+import kira.formation.auth.demo.utilisateurs.services.AuthentificationService;
 
 public class AuthentificationUtilisateurService implements AuthentificationService{
 

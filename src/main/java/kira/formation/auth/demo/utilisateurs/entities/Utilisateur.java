@@ -1,4 +1,4 @@
-package kira.formation.auth.demo.models;
+package kira.formation.auth.demo.utilisateurs.entities;
 
 import java.time.LocalDateTime;
 

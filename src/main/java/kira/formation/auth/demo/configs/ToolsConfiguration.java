@@ -10,25 +10,14 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-import kira.formation.auth.demo.repositorories.UtilisateurRepository;
-import kira.formation.auth.demo.services.AuthentificationService;
-import kira.formation.auth.demo.services.UtilisateurCRUDService;
-import kira.formation.auth.demo.services.impl.AuthentificationUtilisateurService;
-import kira.formation.auth.demo.services.impl.UtilisateurServiceImpl;
-
+/**
+ * Configuration pour les outils utilisable dans l'ensemble des classes de ce projet.
+ * @author Killian
+ *
+ */
 @Configuration
-public class UtilisateurConfig {
+public class ToolsConfiguration {
 
-	@Bean
-	public UtilisateurCRUDService utilisateurService(UtilisateurRepository repository, ObjectMapper mapper) {
-		return new UtilisateurServiceImpl(repository, mapper);
-	}
-	
-	@Bean
-	public AuthentificationService authService(UtilisateurRepository repository) {
-		return new AuthentificationUtilisateurService(repository);
-	}
-	
 	@Bean
 	public ObjectMapper objectMapper() {
 		/*return new ObjectMapper()

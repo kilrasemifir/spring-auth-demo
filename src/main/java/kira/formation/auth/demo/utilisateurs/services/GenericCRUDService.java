@@ -1,4 +1,4 @@
-package kira.formation.auth.demo.services;
+package kira.formation.auth.demo.utilisateurs.services;
 
 import java.util.List;
 

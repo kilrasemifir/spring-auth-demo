@@ -1,8 +1,8 @@
-package kira.formation.auth.demo.services;
+package kira.formation.auth.demo.utilisateurs.services;
 
 import java.util.List;
 
-import kira.formation.auth.demo.dto.SimpleUtilisateurDTO;
+import kira.formation.auth.demo.utilisateurs.dto.SimpleUtilisateurDTO;
 
 public interface SimpleUtilisateurService {
 

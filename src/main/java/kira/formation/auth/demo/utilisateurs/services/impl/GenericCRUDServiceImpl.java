@@ -1,4 +1,4 @@
-package kira.formation.auth.demo.services.impl;
+package kira.formation.auth.demo.utilisateurs.services.impl;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import kira.formation.auth.demo.services.GenericCRUDService;
+import kira.formation.auth.demo.utilisateurs.services.GenericCRUDService;
 
 public class GenericCRUDServiceImpl<T> implements GenericCRUDService<T>{
 

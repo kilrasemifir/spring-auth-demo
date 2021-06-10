@@ -1,4 +1,4 @@
-package kira.formation.auth.demo.controllers;
+package kira.formation.auth.demo.utilisateurs.controllers;
 
 import java.util.List;
 
@@ -13,15 +13,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kira.formation.auth.demo.dto.ConnexionDTO;
-import kira.formation.auth.demo.dto.CreationUtilisateurDTO;
-import kira.formation.auth.demo.dto.ModificationUsernamePasswordDTO;
-import kira.formation.auth.demo.dto.SimpleUtilisateurDTO;
-import kira.formation.auth.demo.dto.UtilisateurDTO;
-import kira.formation.auth.demo.services.AuthentificationService;
-import kira.formation.auth.demo.services.ModificationUtilisateurService;
-import kira.formation.auth.demo.services.SimpleUtilisateurService;
-import kira.formation.auth.demo.services.UtilisateurService;
+import kira.formation.auth.demo.utilisateurs.dto.ConnexionDTO;
+import kira.formation.auth.demo.utilisateurs.dto.CreationUtilisateurDTO;
+import kira.formation.auth.demo.utilisateurs.dto.ModificationUsernamePasswordDTO;
+import kira.formation.auth.demo.utilisateurs.dto.SimpleUtilisateurDTO;
+import kira.formation.auth.demo.utilisateurs.dto.UtilisateurDTO;
+import kira.formation.auth.demo.utilisateurs.entities.Utilisateur;
+import kira.formation.auth.demo.utilisateurs.services.AuthentificationService;
+import kira.formation.auth.demo.utilisateurs.services.ModificationUtilisateurService;
+import kira.formation.auth.demo.utilisateurs.services.SimpleUtilisateurService;
+import kira.formation.auth.demo.utilisateurs.services.UtilisateurService;
 
 @CrossOrigin
 @RestController
@@ -31,8 +32,6 @@ public class UtilisateurController {
 	@Autowired
 	private UtilisateurService service;
 	
-	@Autowired
-	private AuthentificationService authService;
 	
 	@Autowired
 	private SimpleUtilisateurService simpleUtilisateurService;
@@ -45,10 +44,17 @@ public class UtilisateurController {
 		return this.modificationService.creationNouveauUtilisateur(dto);
 	}
 	
+	@GetMapping("{id}/detail")
+	public Utilisateur findByIdDetail(@PathVariable String id) {
+		return this.service.findById(id);
+	}
+	
 	@GetMapping("{id}")
 	public SimpleUtilisateurDTO findById(@PathVariable String id) {
 		return this.simpleUtilisateurService.findSimpleUtilisateurById(id);
 	}
+	
+	
 	
 	@GetMapping("")
 	public List<SimpleUtilisateurDTO> findAll(){
@@ -65,8 +71,5 @@ public class UtilisateurController {
 		return this.modificationService.modificationUsernamePassword(dto);
 	}
 	
-	@PostMapping("connexion")
-	public String connexion(@RequestBody ConnexionDTO dto) {
-		return this.authService.connexion(dto);
-	}
+	
 }

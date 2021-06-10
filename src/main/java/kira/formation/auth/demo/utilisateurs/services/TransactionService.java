@@ -1,6 +1,6 @@
-package kira.formation.auth.demo.services;
+package kira.formation.auth.demo.utilisateurs.services;
 
-import kira.formation.auth.demo.models.Utilisateur;
+import kira.formation.auth.demo.utilisateurs.entities.Utilisateur;
 
 /**
  * Service permettant les transaction entre les utilisateurs de cette API.

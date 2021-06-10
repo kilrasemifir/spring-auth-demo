@@ -1,12 +1,12 @@
-package kira.formation.auth.demo.services.impl;
+package kira.formation.auth.demo.utilisateurs.services.impl;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import kira.formation.auth.demo.models.Utilisateur;
-import kira.formation.auth.demo.repositorories.UtilisateurRepository;
-import kira.formation.auth.demo.services.UtilisateurCRUDService;
-import kira.formation.auth.demo.services.TransactionService;
+import kira.formation.auth.demo.utilisateurs.entities.Utilisateur;
+import kira.formation.auth.demo.utilisateurs.repositories.UtilisateurRepository;
+import kira.formation.auth.demo.utilisateurs.services.TransactionService;
+import kira.formation.auth.demo.utilisateurs.services.UtilisateurCRUDService;
 
 public class TransactionServiceImpl implements TransactionService{
 
