@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kira.formation.auth.demo.utilisateurs.dto.ConnexionDTO;
+import kira.formation.auth.demo.logging.Logger;
+import kira.formation.auth.demo.logging.LoggerFactory;
 import kira.formation.auth.demo.utilisateurs.dto.CreationUtilisateurDTO;
 import kira.formation.auth.demo.utilisateurs.dto.ModificationUsernamePasswordDTO;
 import kira.formation.auth.demo.utilisateurs.dto.SimpleUtilisateurDTO;
 import kira.formation.auth.demo.utilisateurs.dto.UtilisateurDTO;
 import kira.formation.auth.demo.utilisateurs.entities.Utilisateur;
-import kira.formation.auth.demo.utilisateurs.services.AuthentificationService;
 import kira.formation.auth.demo.utilisateurs.services.ModificationUtilisateurService;
 import kira.formation.auth.demo.utilisateurs.services.SimpleUtilisateurService;
 import kira.formation.auth.demo.utilisateurs.services.UtilisateurService;
@@ -29,6 +29,8 @@ import kira.formation.auth.demo.utilisateurs.services.UtilisateurService;
 @RequestMapping("utilisateurs")
 public class UtilisateurController {
 
+	private final Logger LOGGER;
+	
 	@Autowired
 	private UtilisateurService service;
 	
@@ -38,6 +40,15 @@ public class UtilisateurController {
 	
 	@Autowired
 	private ModificationUtilisateurService modificationService;
+	
+	public UtilisateurController(LoggerFactory factory) {
+		this.LOGGER = factory.getElasticLogger(UtilisateurController.class.getName());
+		LOGGER.trace("Creation du controller pour les utilisateurs");
+		LOGGER.debug("Creation du controller pour les utilisateurs");
+		LOGGER.info("Creation du controller pour les utilisateurs");
+		LOGGER.warn("Creation du controller pour les utilisateurs");
+		LOGGER.error("Creation du controller pour les utilisateurs");
+	}
 	
 	@PostMapping("")
 	public UtilisateurDTO creationNouveauUtilisateur(@RequestBody CreationUtilisateurDTO dto) {

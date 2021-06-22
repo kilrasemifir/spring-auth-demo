@@ -1,0 +1,19 @@
+2021-06-22 09:14:40.845  INFO 18384 --- [main] k.f.auth.demo.AuthDemoApplication        : Starting AuthDemoApplication using Java 11.0.2 on LAPTOP-7U27SS0K with PID 18384 (D:\dev\formation\M2I_java_IBM\auth-demo-projet\spring-auth-demo\target\classes started by Killian in D:\dev\formation\M2I_java_IBM\auth-demo-projet\spring-auth-demo)
+2021-06-22 09:14:40.850  INFO 18384 --- [main] k.f.auth.demo.AuthDemoApplication        : No active profile set, falling back to default profiles: default
+2021-06-22 09:14:41.443  INFO 18384 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2021-06-22 09:14:41.490  INFO 18384 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 43 ms. Found 1 MongoDB repository interfaces.
+2021-06-22 09:14:41.844  INFO 18384 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-06-22 09:14:41.853  INFO 18384 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-06-22 09:14:41.854  INFO 18384 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2021-06-22 09:14:41.938  INFO 18384 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-06-22 09:14:41.938  INFO 18384 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1049 ms
+2021-06-22 09:14:42.082  INFO 18384 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2021-06-22 09:14:42.140  INFO 18384 --- [cluster-ClusterId{value='60d18de2075bb010f5721e4d', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:8}] to localhost:27017
+2021-06-22 09:14:42.140  INFO 18384 --- [cluster-rtt-ClusterId{value='60d18de2075bb010f5721e4d', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:9}] to localhost:27017
+2021-06-22 09:14:42.142  INFO 18384 --- [cluster-ClusterId{value='60d18de2075bb010f5721e4d', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=9, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=25259700}
+2021-06-22 09:14:42.645  INFO 18384 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-06-22 09:14:42.654  INFO 18384 --- [main] k.f.auth.demo.AuthDemoApplication        : Started AuthDemoApplication in 2.214 seconds (JVM running for 4.201)
+2021-06-22 09:14:42.656  INFO 18384 --- [main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state LivenessState changed to CORRECT
+2021-06-22 09:14:42.658  INFO 18384 --- [main] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed to ACCEPTING_TRAFFIC
+2021-06-22 09:14:50.135  INFO 18384 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-06-22 09:14:50.136  INFO 18384 --- [RMI TCP Connection(2)-127.0.0.1] o.s.b.a.ApplicationAvailabilityBean      : Application availability state ReadinessState changed from ACCEPTING_TRAFFIC to REFUSING_TRAFFIC
