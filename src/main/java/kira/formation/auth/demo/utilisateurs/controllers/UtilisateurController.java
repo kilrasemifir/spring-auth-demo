@@ -44,41 +44,41 @@ public class UtilisateurController {
 	public UtilisateurController(LoggerFactory factory) {
 		this.LOGGER = factory.getElasticLogger(UtilisateurController.class.getName());
 		LOGGER.trace("Creation du controller pour les utilisateurs");
-		LOGGER.debug("Creation du controller pour les utilisateurs");
-		LOGGER.info("Creation du controller pour les utilisateurs");
-		LOGGER.warn("Creation du controller pour les utilisateurs");
-		LOGGER.error("Creation du controller pour les utilisateurs");
 	}
 	
 	@PostMapping("")
 	public UtilisateurDTO creationNouveauUtilisateur(@RequestBody CreationUtilisateurDTO dto) {
+		LOGGER.info("Creation de l'utilisateur "+dto.getUsername());
 		return this.modificationService.creationNouveauUtilisateur(dto);
 	}
 	
 	@GetMapping("{id}/detail")
 	public Utilisateur findByIdDetail(@PathVariable String id) {
+		LOGGER.info("Recuperation des detail de lutilisateur d'id  "+id);
 		return this.service.findById(id);
 	}
 	
 	@GetMapping("{id}")
 	public SimpleUtilisateurDTO findById(@PathVariable String id) {
+		LOGGER.info("Recuperation de l'utilisateur d'id "+id);
 		return this.simpleUtilisateurService.findSimpleUtilisateurById(id);
 	}
 	
-	
-	
 	@GetMapping("")
 	public List<SimpleUtilisateurDTO> findAll(){
+		LOGGER.info("Recuperation de l'ensemble des utilisateurs");
 		return this.simpleUtilisateurService.trouverToutLesUtilisateurs();
 	}
 	
 	@DeleteMapping("{id}")
 	public void supprimerParId(@PathVariable String id) {
+		LOGGER.warn("Suppression de l'utilisateur d'id "+id);
 		this.service.deleteById(id);
 	}
 	
 	@PatchMapping("")
 	public UtilisateurDTO modificationUserNamePassword(ModificationUsernamePasswordDTO dto) {
+		LOGGER.info("Modification du mot de passe de l'utilisateur "+dto.getUsername());
 		return this.modificationService.modificationUsernamePassword(dto);
 	}
 	
