@@ -1,5 +1,7 @@
 package kira.formation.auth.demo.utilisateurs.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kira.formation.auth.demo.logging.Logger;
-import kira.formation.auth.demo.logging.LoggerFactory;
 import kira.formation.auth.demo.utilisateurs.dto.ConnexionDTO;
 import kira.formation.auth.demo.utilisateurs.services.AuthentificationService;
 
@@ -17,13 +17,12 @@ import kira.formation.auth.demo.utilisateurs.services.AuthentificationService;
 @RequestMapping("auth")
 public class AuthentificationController {
 	
-	private final Logger LOGGER;
+	private final Logger LOGGER = LoggerFactory.getLogger(AuthentificationController.class);
 	
 	@Autowired
 	private AuthentificationService authService;
 	
-	public AuthentificationController(LoggerFactory factory) {
-		this.LOGGER = factory.getElasticLogger(AuthentificationController.class.getName());
+	public AuthentificationController() {
 		LOGGER.trace("Creation du controller d'authentification");
 	}
 	

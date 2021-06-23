@@ -2,6 +2,8 @@ package kira.formation.auth.demo.utilisateurs.controllers;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kira.formation.auth.demo.logging.Logger;
-import kira.formation.auth.demo.logging.LoggerFactory;
 import kira.formation.auth.demo.utilisateurs.dto.CreationUtilisateurDTO;
 import kira.formation.auth.demo.utilisateurs.dto.ModificationUsernamePasswordDTO;
 import kira.formation.auth.demo.utilisateurs.dto.SimpleUtilisateurDTO;
@@ -29,7 +29,7 @@ import kira.formation.auth.demo.utilisateurs.services.UtilisateurService;
 @RequestMapping("utilisateurs")
 public class UtilisateurController {
 
-	private final Logger LOGGER;
+	private final Logger LOGGER = LoggerFactory.getLogger(UtilisateurController.class);
 	
 	@Autowired
 	private UtilisateurService service;
@@ -41,8 +41,7 @@ public class UtilisateurController {
 	@Autowired
 	private ModificationUtilisateurService modificationService;
 	
-	public UtilisateurController(LoggerFactory factory) {
-		this.LOGGER = factory.getElasticLogger(UtilisateurController.class.getName());
+	public UtilisateurController() {
 		LOGGER.trace("Creation du controller pour les utilisateurs");
 	}
 	

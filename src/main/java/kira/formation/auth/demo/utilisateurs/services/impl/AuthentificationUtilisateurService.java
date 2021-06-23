@@ -3,11 +3,11 @@ package kira.formation.auth.demo.utilisateurs.services.impl;
 import java.util.Optional;
 
 import org.bson.internal.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import kira.formation.auth.demo.logging.Logger;
-import kira.formation.auth.demo.logging.LoggerFactory;
 import kira.formation.auth.demo.utilisateurs.dto.ConnexionDTO;
 import kira.formation.auth.demo.utilisateurs.entities.Utilisateur;
 import kira.formation.auth.demo.utilisateurs.repositories.UtilisateurRepository;
@@ -16,12 +16,11 @@ import kira.formation.auth.demo.utilisateurs.services.AuthentificationService;
 public class AuthentificationUtilisateurService implements AuthentificationService{
 
 
-	private final Logger LOGGER;
+	private final Logger LOGGER = LoggerFactory.getLogger(AuthentificationUtilisateurService.class);;
 	
 	private UtilisateurRepository repository;
 	
-	public AuthentificationUtilisateurService(UtilisateurRepository repository, LoggerFactory factory) {
-		LOGGER = factory.getElasticLogger(AuthentificationUtilisateurService.class.getName());
+	public AuthentificationUtilisateurService(UtilisateurRepository repository) {
 		this.repository = repository;
 	}
 
