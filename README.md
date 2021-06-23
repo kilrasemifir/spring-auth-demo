@@ -1,6 +1,8 @@
 # Authentification avec Spring
 
-# Lancer le programme
+Cette application utilise un logger fait main pour montrer comment faire la connexion entre spring et elasticsearch.
+
+## Lancer le programme
 Dans un terminal:
 ```Shell
 docker-compose up -d

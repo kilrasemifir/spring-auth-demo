@@ -18,7 +18,7 @@ public class LogMessage {
 
 	@Id
 	private String id;
-	
+	private Long mySqlId;
 	@Field(type = FieldType.Date, format = DateFormat.custom, pattern = "uuuu-MM-dd'T'HH:mm:ss.SSS")
 	private LocalDateTime date;
 	private String level;

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+import kira.formation.auth.demo.logging.LoggerFactory;
 import kira.formation.auth.demo.utilisateurs.repositories.UtilisateurRepository;
 import kira.formation.auth.demo.utilisateurs.services.AuthentificationService;
 import kira.formation.auth.demo.utilisateurs.services.SimpleUtilisateurService;
@@ -35,8 +36,8 @@ public class UtilisateurConfig {
 	}
 	
 	@Bean
-	public AuthentificationService authService(UtilisateurRepository repository) {
-		return new AuthentificationUtilisateurService(repository);
+	public AuthentificationService authService(UtilisateurRepository repository, LoggerFactory factory) {
+		return new AuthentificationUtilisateurService(repository, factory);
 	}
 	
 	@Bean
